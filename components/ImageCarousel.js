@@ -43,6 +43,19 @@ export default function ImageCarousel({ images, loading }) {
     };
   }, [images]);
 
+  // Auto-rotate images every 5 seconds
+  useEffect(() => {
+    if (!images || images.length <= 1) return; // Don't rotate if there's only one image
+    
+    const interval = setInterval(() => {
+      setCurrentImageIndex(prevIndex => 
+        prevIndex === images.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 5000); // Change image every 5 seconds
+    
+    return () => clearInterval(interval);
+  }, [images]);
+
   if (!images || images.length === 0) {
     return (
       <div className="absolute inset-0 bg-gray-900 flex items-center justify-center">
@@ -70,6 +83,22 @@ export default function ImageCarousel({ images, loading }) {
           />
         );
       })}
+
+      {/* Image indicators (dots) */}
+      {images.length > 1 && (
+        <div className="absolute bottom-16 left-0 right-0 flex justify-center space-x-2 z-30">
+          {images.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentImageIndex(index)}
+              className={`w-2 h-2 rounded-full focus:outline-none ${
+                index === currentImageIndex ? 'bg-white' : 'bg-gray-400 bg-opacity-60'
+              }`}
+              aria-label={`Go to image ${index + 1}`}
+            />
+          ))}
+        </div>
+      )}
 
       {/* Loading indicator */}
       {loading && (

@@ -106,7 +106,7 @@ export default function LikedPagesSidebar({ isOpen, onClose, language = 'en' }) 
       {/* Overlay with pointer events but NO background */}
       {isOpen && (
         <div 
-          className="fixed inset-0 z-40" 
+          className="fixed inset-0 z-[1001]" 
           onClick={onClose}
           style={{ background: 'transparent' }}
         />
@@ -114,7 +114,7 @@ export default function LikedPagesSidebar({ isOpen, onClose, language = 'en' }) 
       
       {/* Sidebar itself - only this has a background */}
       <div 
-        className={`fixed right-0 top-0 bottom-0 z-50 w-full sm:max-w-md bg-wikitok-dark shadow-lg transform transition-transform duration-300 ease-out ${
+        className={`fixed right-0 top-0 bottom-0 z-[1002] w-full sm:max-w-md bg-wikitok-dark shadow-lg transform transition-transform duration-300 ease-out ${
             isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
