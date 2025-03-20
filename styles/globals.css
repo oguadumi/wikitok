@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --wikitok-dark: #121212;
+  --wikitok-gray: #222222;
+  --wikitok-primary: #ff4d4d;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.bg-wikitok-dark {
+  background-color: var(--wikitok-dark);
+}
+
+.bg-wikitok-gray {
+  background-color: var(--wikitok-gray);
+}
+
+.text-wikitok-primary {
+  color: var(--wikitok-primary);
+}
+
+.bg-wikitok-primary {
+  background-color: var(--wikitok-primary);
+}
+
+/* For gradient background over content */
+.bg-gradient-bottom {
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+}
+
+/* Add TikTok-style heartbeat animation */
+@keyframes heartbeat {
+  0% {
+    transform: scale(0);
+  }
+  15% {
+    transform: scale(1.2);
+  }
+  30% {
+    transform: scale(1);
+  }
+  45% {
+    transform: scale(1.1);
+  }
+  60% {
+    transform: scale(1);
+  }
+}
+
+.animate-heartbeat {
+  animation: heartbeat 0.8s ease-in-out forwards;
+}
